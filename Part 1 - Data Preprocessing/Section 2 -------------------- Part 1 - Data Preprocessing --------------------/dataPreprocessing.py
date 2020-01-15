@@ -33,8 +33,17 @@ labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
 
 #Splitting the dataset into the Training set and Test set
-#Purpose: train the machine learning algorithm and 
-#then test the preprocessing code on other data set to confirm
+#Purpose: create data sets for training the machine learning algorithm and 
+#for testing the preprocessing code on other data set to confirm
 #that it can dynamically preprocess data passed its way
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 0)
+
+#Feature scaling
+#Purpose: to normalize the data in a way that
+#machine learning algorithms can process all the data
+#without discarding values because of higher scales
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+x_train = sc_X.fit_transform(x_train)
+x_test = sc_X.transform(x_test)
